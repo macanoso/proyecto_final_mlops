@@ -1,0 +1,47 @@
+artifact_path: mlflow-artifacts:/2/models/m-17dec401ed1a47008f84411337c79d42/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.11
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+is_signature_from_type_hint: false
+mlflow_version: 3.3.2
+model_id: m-17dec401ed1a47008f84411337c79d42
+model_size_bytes: 1527287
+model_uuid: m-17dec401ed1a47008f84411337c79d42
+prompts: null
+run_id: 781ea07d23ee40a4900dcf07dcb56254
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "string", "name": "user_id", "required": true}, {"type": "string",
+    "name": "age_group", "required": true}, {"type": "string", "name": "location",
+    "required": true}, {"type": "string", "name": "device_type", "required": true},
+    {"type": "string", "name": "subscription_type", "required": true}, {"type": "long",
+    "name": "days_since_registration", "required": true}, {"type": "long", "name":
+    "total_purchases", "required": true}, {"type": "double", "name": "avg_order_value",
+    "required": true}, {"type": "double", "name": "last_purchase_days", "required":
+    true}, {"type": "long", "name": "sessions_last_30_days", "required": true}, {"type":
+    "double", "name": "time_on_site_minutes", "required": false}, {"type": "double",
+    "name": "pages_per_session", "required": true}, {"type": "double", "name": "cart_abandonment_rate",
+    "required": true}, {"type": "double", "name": "purchase_frequency", "required":
+    true}, {"type": "double", "name": "total_purchases_per_day", "required": true},
+    {"type": "double", "name": "days_between_first_and_last_purchase", "required":
+    true}, {"type": "string", "name": "bucket_avg_order_value", "required": true},
+    {"type": "long", "name": "PRUEBA", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-09-17 01:47:04.711451'

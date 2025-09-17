@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/macano/Desktop/code_personal/proyecto_final_mlops/src/app/train/mlruns/262014122316126208/808abe3ca4d04369ae9067993cf83109/artifacts
+end_time: 1758149628237
+entry_point_name: ''
+experiment_id: '262014122316126208'
+lifecycle_stage: active
+run_id: 808abe3ca4d04369ae9067993cf83109
+run_name: '12'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1758149628229
+status: 3
+tags: []
+user_id: macano

@@ -1,0 +1,18 @@
+{
+    "recommendations": [
+      "davidanson.vscode-markdownlint",
+      "github.copilot-chat",
+      "github.copilot",
+      "ms-python.black-formatter",
+      "ms-python.flake8",
+      "ms-python.isort",
+      "ms-python.mypy-type-checker",
+      "ms-python.pylint",
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "ms-python.debugpy",
+      "ms-toolsai.jupyter",
+      "nwgh.bandit",
+      "usernamehw.errorlens",
+    ]
+  }

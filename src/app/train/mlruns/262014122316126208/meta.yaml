@@ -1,0 +1,6 @@
+artifact_location: file:///Users/macano/Desktop/code_personal/proyecto_final_mlops/src/app/train/mlruns/262014122316126208
+creation_time: 1758149621457
+experiment_id: '262014122316126208'
+last_update_time: 1758149621457
+lifecycle_stage: active
+name: optuna_RandomForestClassifier

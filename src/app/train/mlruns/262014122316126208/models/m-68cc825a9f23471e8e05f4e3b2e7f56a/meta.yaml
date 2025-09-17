@@ -1,0 +1,10 @@
+artifact_location: file:///Users/macano/Desktop/code_personal/proyecto_final_mlops/src/app/train/mlruns/262014122316126208/models/m-68cc825a9f23471e8e05f4e3b2e7f56a/artifacts
+creation_timestamp: 1758149634406
+experiment_id: '262014122316126208'
+last_updated_timestamp: 1758149636036
+model_id: m-68cc825a9f23471e8e05f4e3b2e7f56a
+model_type: null
+name: model
+source_run_id: ef76f59e00e14ffabf984e7ca51daa20
+status: 2
+status_message: null

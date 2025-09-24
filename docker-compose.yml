@@ -1,0 +1,99 @@
+services:
+  # Training service with MLflow and Optuna
+  train:
+    build: .
+    image: proyecto-mlops:latest
+    container_name: mlops-train
+    volumes:
+      # Mount source code for development
+      - ./src:/app/src
+      - ./notebooks:/app/notebooks
+      # Persist trained models
+      - ./models:/app/models
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow-server:5001
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+    command: python -m src.app.train.task_train
+    networks:
+      - mlops-network
+    depends_on:
+      mlflow-server:
+        condition: service_healthy
+
+  # MLflow server with SQLite backend
+  mlflow-server:
+    build: .
+    image: proyecto-mlops:latest
+    container_name: mlflow-server
+    volumes:
+      - ./mlflow_data:/mlflow_data
+      - ./mlruns:/mlruns
+      - ./mlartifacts:/mlartifacts
+    working_dir: /app
+    environment:
+      - MLFLOW_SERVER_HOST=0.0.0.0
+      - MLFLOW_SERVER_PORT=5001
+    ports:
+      - "5001:5001"
+    command: sh -c "mkdir -p /mlflow_data /mlruns /mlartifacts && mlflow server --backend-store-uri sqlite:////mlflow_data/backend.db --default-artifact-root /mlartifacts --host 0.0.0.0 --port 5001 --serve-artifacts"
+    networks:
+      - mlops-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # Prediction service (API for serving predictions)
+  predict:
+    build: .
+    image: proyecto-mlops:latest
+    container_name: mlops-predict
+    volumes:
+      - ./src:/app/src
+      - ./models:/app/models
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow-server:5001
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+    ports:
+      - "8080:8080"
+    # This will be the prediction service command once implemented
+    command: python -m src.app.pred.prediction
+    profiles:
+      - predict
+    networks:
+      - mlops-network
+    depends_on:
+      - mlflow-server
+
+  # Development service for interactive work
+  dev:
+    build: .
+    image: proyecto-mlops:latest
+    container_name: mlops-dev
+    volumes:
+      - ./src:/app/src
+      - ./notebooks:/app/notebooks
+      - ./models:/app/models
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow-server:5001
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+    ports:
+      - "8888:8888"
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    profiles:
+      - dev
+    networks:
+      - mlops-network
+    depends_on:
+      - mlflow-server
+
+networks:
+  mlops-network:
+    driver: bridge

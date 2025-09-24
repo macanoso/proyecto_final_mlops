@@ -10,11 +10,4 @@ class FeatureEngineer:
         self.df['total_purchases_per_day'] = self.df['total_purchases'] / self.df['days_since_registration']
         self.df["days_between_first_and_last_purchase"] = self.df["days_since_registration"] - self.df["last_purchase_days"]
         self.df["bucket_avg_order_value"] = pd.cut(self.df["avg_order_value"], bins=3, labels=["low", "medium", "high"])
-        self.df["PRUEBA"] = 1
-
-        # fill nulls and inf with nan
-        self.df = self.df.fillna(np.nan)
-        self.df = self.df.replace(np.inf, np.nan)
-        self.df = self.df.replace(-np.inf, np.nan)
-
         return self.df
